@@ -1,0 +1,37 @@
+# Data files
+data/*.csv
+
+# Docker volumes
+elasticsearch-data/
+filebeat-data/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

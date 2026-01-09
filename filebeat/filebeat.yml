@@ -1,0 +1,96 @@
+filebeat.inputs:
+  - type: filestream
+    id: cloud-costs
+    enabled: true
+    paths:
+      - /usr/share/filebeat/data/cloud-costs.csv
+    
+    # Parse CSV data
+    parsers:
+      - csv:
+          fields:
+            - timestamp
+            - service
+            - region
+            - cost
+            - provider
+            - carbon_intensity
+            - carbon_emissions_g
+            - usage_hours
+            - environment
+            - is_anomaly
+          header_bytes: 1
+          trim_leading_space: true
+    
+    # Add fields for better organization
+    fields:
+      log_type: cloud_cost
+      demo: cost_sustainability
+    
+    # Process the timestamp field
+    processors:
+      - timestamp:
+          field: message.timestamp
+          layouts:
+            - '2006-01-02'
+          target_field: '@timestamp'
+      
+      # Convert numeric fields
+      - convert:
+          fields:
+            - {from: "message.cost", to: "cost", type: "float"}
+            - {from: "message.carbon_intensity", to: "carbon_intensity", type: "integer"}
+            - {from: "message.carbon_emissions_g", to: "carbon_emissions_g", type: "float"}
+            - {from: "message.usage_hours", to: "usage_hours", type: "float"}
+          ignore_missing: true
+          fail_on_error: false
+      
+      # Copy string fields to root level
+      - copy_fields:
+          fields:
+            - {from: "message.service", to: "service"}
+            - {from: "message.region", to: "region"}
+            - {from: "message.provider", to: "provider"}
+            - {from: "message.environment", to: "environment"}
+            - {from: "message.is_anomaly", to: "is_anomaly"}
+          fail_on_error: false
+          ignore_missing: true
+      
+      # Drop the original message field to keep things clean
+      - drop_fields:
+          fields: ["message"]
+          ignore_missing: true
+
+# Elasticsearch output configuration
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  index: "cloud-costs-%{+yyyy.MM}"
+  
+  # Basic auth (for production, use keystore)
+  username: "elastic"
+  password: "changeme"
+  
+  # Index template settings
+  setup.template.name: "cloud-costs"
+  setup.template.pattern: "cloud-costs-*"
+  setup.template.settings:
+    index.number_of_shards: 1
+    index.number_of_replicas: 0
+
+# Kibana connection for dashboard setup
+setup.kibana:
+  host: "kibana:5601"
+  username: "elastic"
+  password: "changeme"
+
+# Logging configuration
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
+
+# Monitoring
+monitoring.enabled: false
