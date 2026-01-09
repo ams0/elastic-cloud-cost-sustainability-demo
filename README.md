@@ -39,7 +39,7 @@ Mock Cost Data (CSV)
 
 2. **Start the Elastic Stack:**
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 3. **Access Kibana:**

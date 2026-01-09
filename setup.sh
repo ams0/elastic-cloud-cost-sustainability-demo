@@ -14,7 +14,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Check if Docker Compose is installed
-if ! command -v docker-compose &> /dev/null; then
+if ! docker compose version &> /dev/null; then
     echo "Error: Docker Compose is not installed. Please install Docker Compose first."
     exit 1
 fi
@@ -35,7 +35,7 @@ echo "✓ Cost data generated successfully"
 echo ""
 
 echo "Step 2: Starting Elastic Stack with Docker Compose..."
-docker-compose up -d
+docker compose up -d
 if [ $? -ne 0 ]; then
     echo "Error: Failed to start Docker containers"
     exit 1
@@ -96,8 +96,8 @@ echo "6. Import: kibana/dashboards/cost-sustainability.ndjson"
 echo "7. View the dashboard under Analytics → Dashboard"
 echo ""
 echo "To stop the demo:"
-echo "  docker-compose down"
+echo "  docker compose down"
 echo ""
 echo "To view logs:"
-echo "  docker-compose logs -f"
+echo "  docker compose logs -f"
 echo ""
