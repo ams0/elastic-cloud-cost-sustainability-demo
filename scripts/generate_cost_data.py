@@ -119,7 +119,10 @@ def generate_cost_data(days=90, output_file='data/cloud-costs.csv'):
                     
                     # Calculate carbon emissions (cost correlates with usage)
                     carbon_intensity = CARBON_INTENSITY[region]
-                    estimated_kwh = cost / 150  # Rough estimate: $150 per kWh equivalent
+                    # Rough estimate: $150 per kWh equivalent computing cost
+                    # This is a simplified calculation for demo purposes
+                    # In production, use actual kWh metrics from cloud provider APIs
+                    estimated_kwh = cost / 150
                     carbon_emissions = estimated_kwh * carbon_intensity
                     
                     record = {

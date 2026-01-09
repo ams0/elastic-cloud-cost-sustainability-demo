@@ -30,6 +30,19 @@ Mock Cost Data (CSV)
 - Docker and Docker Compose
 - Python 3.8+ (for data generation)
 
+## Security Notice
+
+⚠️ **This is a demo environment** - The default configuration uses hardcoded credentials for simplicity:
+- Elasticsearch username: `elastic`
+- Elasticsearch password: `changeme`
+
+**For production use:**
+- Change all default passwords
+- Use environment variables or Docker secrets for credentials
+- Enable SSL/TLS for Elasticsearch and Kibana
+- Implement proper authentication and authorization
+- Review and harden security settings
+
 ## Quick Start
 
 1. **Generate mock cost data:**
@@ -108,6 +121,36 @@ The mock cost data includes:
 - Add budget alerts and forecasting
 - Integrate with carbon accounting platforms
 - Add cost allocation by teams or projects
+
+## Production Considerations
+
+This is a demo environment. For production deployment:
+
+### Security
+- **Change default passwords** - Never use `changeme` in production
+- **Use environment variables** - Store credentials in `.env` files or secret managers
+- **Enable SSL/TLS** - Encrypt all traffic between services
+- **Network security** - Use firewalls and network segmentation
+- **Authentication** - Configure SAML/LDAP for user authentication
+- **Authorization** - Implement role-based access control (RBAC)
+
+### Scalability
+- **Increase resources** - Adjust memory/CPU based on data volume
+- **Add replicas** - Set up multi-node Elasticsearch cluster
+- **Index lifecycle** - Configure ILM policies for data retention
+- **Monitoring** - Enable Elastic Stack monitoring and alerting
+
+### Data Integration
+- **Real APIs** - Connect to AWS Cost Explorer, Azure Cost Management
+- **Real-time data** - Use Logstash or custom integrations for live data
+- **Data validation** - Implement data quality checks
+- **Backup** - Regular snapshots of Elasticsearch indices
+
+### Performance
+- **Index optimization** - Tune shard and replica settings
+- **Query optimization** - Use filter context and field caps
+- **Dashboard optimization** - Limit data ranges and use aggregations
+- **Caching** - Enable query result caching
 
 ## License
 
