@@ -1,0 +1,50 @@
+{
+  "index_patterns": ["cloud-costs-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.refresh_interval": "5s"
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "service": {
+          "type": "keyword"
+        },
+        "region": {
+          "type": "keyword"
+        },
+        "cost": {
+          "type": "float"
+        },
+        "provider": {
+          "type": "keyword"
+        },
+        "carbon_intensity": {
+          "type": "integer"
+        },
+        "carbon_emissions_g": {
+          "type": "float"
+        },
+        "usage_hours": {
+          "type": "float"
+        },
+        "environment": {
+          "type": "keyword"
+        },
+        "is_anomaly": {
+          "type": "keyword"
+        },
+        "log_type": {
+          "type": "keyword"
+        },
+        "demo": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
