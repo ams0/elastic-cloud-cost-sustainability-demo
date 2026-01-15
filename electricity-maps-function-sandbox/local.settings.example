@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "ELECTRICITY_MAPS_API_KEY": "your-electricity-maps-api-key-here",
+    "ELECTRICITY_MAPS_API_URL": "https://api.electricitymap.org/v3",
+    "ELASTICSEARCH_CLOUD_ID": "your-elastic-cloud-id-here",
+    "ELASTICSEARCH_API_KEY": "your-elastic-api-key-here",
+    "ZONES": "NL,DE,FR,GB,BE,ES,IT,PT,AT,CH,PL,DK,SE,NO,FI"
+  }
+}

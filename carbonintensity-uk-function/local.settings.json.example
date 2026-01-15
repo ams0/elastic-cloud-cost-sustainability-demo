@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "ELASTICSEARCH_CLOUD_ID": "your-elastic-cloud-id-here",
+    "ELASTICSEARCH_API_KEY": "your-elastic-api-key-here"
+  }
+}

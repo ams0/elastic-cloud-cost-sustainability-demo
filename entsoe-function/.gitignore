@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Azure Functions
+.python_packages/
+.vscode/
+local.settings.json
+__blobstorage__/
+__queuestorage__/
+__azurite_db*__.json
+.python_version
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
